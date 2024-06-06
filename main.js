@@ -20,10 +20,6 @@ const STUDENT_GROUP = "student_group"
 let groups = ["Mobilograph", "Tredir", "Designer", "Developer"];
 
 
-
-
-
-
 let studentsJSON = localStorage.getItem(STUDENTS);
 let students = JSON.parse(studentsJSON) || [];
 
@@ -131,7 +127,6 @@ studentForm.addEventListener("submit", function (event) {
 openModalBtn.addEventListener("click", function () {
   addStudentBtn.textContent = "Add";
   studentModalTitle.textContent = "Adding student";
-
   studentForm.elements.firstName.value = "";
   studentForm.elements.lastName.value = "";
   studentForm.elements.group.value = groups[0];
@@ -143,9 +138,7 @@ function editStudent(i) {
 
   addStudentBtn.textContent = "Save";
   studentModalTitle.textContent = "Editing student";
-
   let { firstName, lastName, group, doesWork } = students[i];
-
   studentForm.elements.firstName.value = firstName;
   studentForm.elements.lastName.value = lastName;
   studentForm.elements.group.value = group;
@@ -153,10 +146,9 @@ function editStudent(i) {
 }
 
 
-
 function deleteStudent(i) {
-  let doesConfirm = confirm("Ushbu malumotlarni o'chirasizmi!");
-  if (doesConfirm) {
+  let deleted = confirm("Ushbu malumotlarni o'chirasizmi!");
+  if (deleted) {
     students = students.filter((_, index) => index !== i);
     localStorage.setItem(STUDENTS, JSON.stringify(students));
     getStudents();
